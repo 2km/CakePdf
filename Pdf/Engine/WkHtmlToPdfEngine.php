@@ -91,6 +91,12 @@ class WkHtmlToPdfEngine extends AbstractPdfEngine {
 			'encoding' => $this->_Pdf->encoding(),
 			'title' => $this->_Pdf->title()
 		);
+		$header_options = $this->config('header');
+
+		if(!empty($header_options)){
+			$options[key($header_options)]=current($header_options);
+			$options['header-spacing'] = 5;
+		}
 
 		$margin = $this->_Pdf->margin();
 		foreach ($margin as $key => $value) {
